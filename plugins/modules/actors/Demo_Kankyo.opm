@@ -1,0 +1,16 @@
+﻿// Temple of Time Door
+let Demo_Kankyo = {
+    actor: "Demo_Kankyo",
+    version_offsets: {
+        debug: 0x168,
+		10: 0x158
+    },
+    readHandler: "range",
+    writeHandler: "actorRange",
+    size: 0x4,
+    actorid: 0x008C,
+    actorCategory: 1,
+    template: "Pushable"
+}
+
+module.exports = Demo_Kankyo;

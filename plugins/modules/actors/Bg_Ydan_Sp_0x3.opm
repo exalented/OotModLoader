@@ -1,0 +1,18 @@
+﻿// Web
+let Bg_Ydan_Sp = {
+    actor: "Bg_Ydan_Sp",
+    version_offsets: {
+        debug: 0x3,
+		10: 0x3
+    },
+    readHandler: "80",
+    writeHandler: "actor_80",
+    actorid: 0x000F,
+    actorCategory: 1,
+    template: "ConditionalKill",
+    conditional: function (packet) {
+        return packet.data.value === 0xFF;
+    }
+}
+
+module.exports = Bg_Ydan_Sp;

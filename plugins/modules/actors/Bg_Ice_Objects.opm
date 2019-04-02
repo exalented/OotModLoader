@@ -1,0 +1,17 @@
+// Ice Cavern puzzle block.
+let Bg_Ice_Objects = {
+    actor: "Bg_Ice_Objects",
+    version_offsets: {
+        debug: 0x24,
+		10: 0x24
+    },
+    readHandler: "range",
+    writeHandler: "actorRange",
+    size: 0xC,
+    actorid: 0x00D6,
+    actorCategory: 6,
+    template: "Pushable",
+    posOnly: true
+}
+
+module.exports = Bg_Ice_Objects;

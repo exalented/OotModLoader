@@ -1,0 +1,36 @@
+// Zelda
+
+class Zelda {
+    constructor() {
+        this.actor = this.constructor.name;
+        this.version_offsets = {
+            debug: 0x130,
+            10: 0x130
+        };
+        this.actorCategory = 4;
+        this.actorid = 0x0179;
+        this.offset = null;
+    }
+
+    init(scene_api, api) {
+        this.offset = this.version_offsets[api.GAME_VERSION];
+        scene_api.computeActor(this.actor + "|" + this.offset, this.actorid, scene_api.actorCategories[this.actorCategory], this.offset, "fourBytes");
+        (function (inst) {
+            api.registerClientSidePacketHook(inst.actor + "|" + inst.offset, function (packet) {
+                if (scene_api._parent._forbidSync) {
+                    return false;
+                }
+                packet.addr = packet.data.hash;
+                packet.offset = inst.offset;
+                packet.data = packet.data.value;
+                packet.writeHandler = "actor_word";
+                if (packet.data === 0x0) {
+                    api.postEvent({id: "ZeldaDespawned", uuid: packet.addr});
+                }
+                return false;
+            });
+        })(this);
+    }
+}
+
+module.exports = new Zelda();

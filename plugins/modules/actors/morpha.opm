@@ -1,0 +1,19 @@
+// Morpha
+let Gohma = {
+    actor: "Morpha",
+    version_offsets: {
+        debug: 0xAF,
+        10: 0xAF
+    },
+    readHandler: "80",
+    actorid: 0x00C4,
+    actorCategory: 9,
+    template: "Boss",
+    exit: 0x0102,
+    cutscene: 0xFFF0,
+    conditional: function (packet) {
+        return packet.data.value === 0x0 || packet.data.value >= 100;
+    }
+}
+
+module.exports = Gohma;

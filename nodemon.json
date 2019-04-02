@@ -1,0 +1,6 @@
+{
+  "verbose": true,
+  "events": {
+    "exit": "svn update"
+  }
+}

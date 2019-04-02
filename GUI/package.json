@@ -1,0 +1,15 @@
+{
+  "productName": "OotModLoader-GUI",
+  "name": "ootmodloader",
+  "version": "1.0.0",
+  "description": "Online play in Ocarina of Time",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Team Ooto",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "4.1.2"
+  }
+}

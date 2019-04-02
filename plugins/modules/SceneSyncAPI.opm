@@ -1,0 +1,172 @@
+﻿/*
+    SceneSync - Keep actors in sync across clients.
+    Copyright (C) 2019  Team Ooto
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+const logger = require(global.OotRunDir + "/OotLogger")("SceneSyncAPI");
+const fs = require("fs");
+
+class SceneSync_API {
+    constructor(parent, emulator, api) {
+        this._parent = parent;
+        this._emulator = emulator;
+        this._actorList = {};
+        this._actorCategories = [];
+        this._templates = {};
+        this._actorModules = {};
+        this._api = api;
+    }
+
+    get actorCategories() {
+        return this._actorCategories;
+    }
+
+    registerTemplate(id, fn) {
+        this._templates[id] = fn;
+    }
+
+    getTemplateByID(id) {
+        return this._templates[id];
+    }
+
+    init(api) {
+        (function (inst) {
+            logger.log("Loading templates...");
+            inst._actorList = api.loadVariables("actor_lists");
+            Object.keys(inst._actorList).forEach(function (key) {
+                if (key !== "global" && key !== "table_offset") {
+                    let value =
+                        Number(inst._actorList.global) +
+                        Number(inst._actorList.table_offset) +
+                        inst._actorList[key];
+                    inst._actorList[key] = value;
+                    inst._actorCategories.push(value);
+                }
+            });
+            let templates = fs.readdirSync(__dirname + "/templates");
+            Object.keys(templates).forEach(function (key) {
+                let file = templates[key];
+                //logger.log("Loading " + file + ".");
+                let temp = require(__dirname + "/templates/" + file);
+                inst.registerTemplate(temp.id, temp);
+            });
+            logger.log("Loading actor data...");
+            let actors = fs.readdirSync(__dirname + "/actors");
+            Object.keys(actors).forEach(function (key) {
+                let file = actors[key];
+                //logger.log("Loading " + file + ".");
+                let temp = require(__dirname + "/actors/" + file);
+                if (temp.hasOwnProperty("setup")) {
+                    temp.setup(temp, api);
+                }
+                if (temp.hasOwnProperty("offset")) {
+                    temp.init(inst, api);
+                } else {
+                    temp["offset"] = temp.version_offsets[api.GAME_VERSION];
+                    temp["actorCategories"] = inst._actorCategories;
+                    inst.getTemplateByID(temp.template).template(inst._parent, api, inst._emulator, temp);
+                }
+            });
+            inst._api.registerEventHandler("onActorSpawned", function(event){
+                logger.log(event);
+                if (inst._actorModules.hasOwnProperty(event.actorID)){
+                    Object.keys(inst._actorModules[event.actorID]).forEach(function(key){
+                        let actor_module = JSON.parse(JSON.stringify(inst._actorModules[event.actorID][key]));
+                        actor_module["type"] = event.type;
+                        actor_module["uuid"] = event.uuid;
+                        actor_module["pointer"] = event.pointer;
+                        logger.log(actor_module);
+                        inst._emulator.sendViaSocket(actor_module);
+                    });
+                }
+            });
+            inst._api.registerEventHandler("onLinkBusy", function(event){
+                if (event.data){
+                    inst._parent.clearhooks_roomLevel();
+                }
+            });
+        })(this);
+    }
+
+    forbidAllSync(sendEvent = true) {
+        if (!this._parent._forbidSync) {
+            logger.log("Sync State locked.");
+            if (sendEvent) {
+                this._api.postEvent({ id: "syncSafety", safe: !this._forbidSync });
+            }
+        }
+        this._parent._forbidSync = true;
+        if (this._parent._forbidHandler) {
+            clearTimeout(this._parent._forbidHandler);
+        }
+        (function (inst) {
+            inst._parent._forbidHandler = setTimeout(function () {
+                inst._parent._forbidSync = false;
+                logger.log("Sync State unlocked.");
+                inst._api.postEvent({ id: "syncSafety", safe: inst._parent._forbidSync });
+            }, 2000);
+        })(this);
+    }
+
+    addToComputeList(actor) {
+        this._parent._computeList.push(actor);
+    }
+
+    computeActor(
+        _packet_id,
+        _actorType,
+        _addr,
+        _hook,
+        _hook_readHandler,
+        _size = 0x1,
+        _filter = null
+    ) {
+        if (!this._actorModules.hasOwnProperty(_actorType)){
+            this._actorModules[_actorType] = [];
+        }
+        if (_filter !== null) {
+            this._actorModules[_actorType].push({
+                packet_id: _packet_id,
+                writeHandler: "actorHook",
+                actorType: _actorType,
+                addr: _addr,
+                offset: 0x0,
+                data: 0x124,
+                hook: _hook,
+                hook_readHandler: _hook_readHandler,
+                filter: _filter,
+                size: _size});
+        } else {
+            this._actorModules[_actorType].push({
+                packet_id: _packet_id,
+                writeHandler: "actorHook",
+                actorType: _actorType,
+                addr: _addr,
+                offset: 0x0,
+                data: 0x124,
+                hook: _hook,
+                hook_readHandler: _hook_readHandler,
+                size: _size
+            });
+        }
+        this._api.registerPacketRoute(_packet_id, "scenesync");
+    }
+
+    doScan() {
+    }
+}
+
+module.exports = SceneSync_API;

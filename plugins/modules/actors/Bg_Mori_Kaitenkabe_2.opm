@@ -1,0 +1,18 @@
+﻿//Forest Temple rotating walls from room before boss
+let Bg_Mori_Kaitenkabe = {
+    actor: "Bg_Mori_Kaitenkabe",
+    version_offsets: {
+        debug: 0x16,
+        10: 0x16
+    },
+    readHandler: "81",
+    writeHandler: "actor",
+    actorid: 0x0088,
+    actorCategory: 1,
+    template: "Conditional",
+    conditional: function (packet) {
+        return true;
+    }
+}
+
+module.exports = Bg_Mori_Kaitenkabe;

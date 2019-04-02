@@ -1,0 +1,18 @@
+﻿// Bombable Wall
+let Bg_Breakwall = {
+    actor: "Bg_Breakwall",
+    version_offsets: {
+        debug: 0x17D,
+		10: 0x16D
+    },
+    readHandler: "80",
+    writeHandler: "actor_80",
+    actorid: 0x0059,
+    actorCategory: 1,
+    template: "Conditional",
+    conditional: function (packet) {
+        return true;
+    }
+}
+
+module.exports = Bg_Breakwall;

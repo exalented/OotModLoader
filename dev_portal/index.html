@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <title>OotModLoader Dev Builds</title>
+    <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="./jquery-ui-1.12.1.custom/jquery-ui.min.css">
+    <link rel="stylesheet" href="./jquery-ui-1.12.1.custom/jquery-ui.theme.min.css">
+    <script src="./jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
+    <script>
+        $(function () {
+            $("#tabs").tabs();
+        });
+        $(function () {
+            $(".widget input[type=submit], .widget a, .widget button").button();
+            $("button, a").click(function (event) { });
+        });
+    </script>
+    <script>
+            $.getJSON("dist.json", function (data) {
+                var items = [];
+                $.each(data, function (key, val) {
+                    items.push("<li id='" + key + "'><a href='" + val + "'>" + val + "</a></li>");
+                });
+
+                $("<ul/>", {
+                    "class": "my-new-list",
+                    html: items.join("")
+                }).appendTo("#content");
+            });
+        </script>
+    <style>
+        body {
+            background-color: black;
+            background-image: url("./images/oototransparent.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">Current Dev Build</a></li>
+        </ul>
+        <div id="tabs-1">
+            <span id="content"></span>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+// Boss Gohma
+let Gohma = {
+    actor: "Gohma",
+    version_offsets: {
+        debug: 0x180,
+        10: 0x180
+    },
+    readHandler: "actor_behavior",
+    actorid: 0x0028,
+    actorCategory: 9,
+    template: "Boss",
+    exit: 0x0209,
+    cutscene: 0x0000,
+    conditional: function (packet) {
+        return packet.data.value === 0x2384;
+    }
+}
+
+module.exports = Gohma;

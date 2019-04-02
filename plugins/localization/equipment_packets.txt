@@ -1,0 +1,16 @@
+equipment_slot_0
+equipment_slot_1
+equipment_slot_2
+equipment_slot_3
+equipment_slot_4
+equipment_slot_5
+equipment_slot_6
+equipment_slot_7
+equipment_slot_8
+equipment_slot_9
+equipment_slot_10
+equipment_slot_11
+equipment_slot_12
+equipment_slot_13
+equipment_slot_14
+equipment_slot_15

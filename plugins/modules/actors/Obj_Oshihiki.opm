@@ -1,0 +1,16 @@
+﻿// Movable Block
+let Obj_Oshihiki = {
+    actor: "Obj_Oshihiki",
+    version_offsets: {
+        debug: 0x24,
+		    10: 0x24
+    },
+    readHandler: "range",
+    writeHandler: "actorRange",
+    size: 0xC,
+    actorid: 0x00FF,
+    actorCategory: 6,
+    template: "Pushable"
+}
+
+module.exports = Obj_Oshihiki;

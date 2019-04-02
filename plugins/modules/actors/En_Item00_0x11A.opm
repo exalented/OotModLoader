@@ -1,0 +1,18 @@
+﻿// Collectable items.
+let En_Item00 = {
+    actor: "En_Item00",
+    version_offsets: {
+        debug: 0x11A,
+		10: 0x11A
+    },
+    readHandler: "80",
+    actorid: 0x0015,
+    actorCategory: 8,
+    template: "ConditionalKill",
+    conditional: function (packet) {
+        return packet.data.value === 0xAA;
+    },
+    filter: { offset: 0x1D, data: 0x06 }
+}
+
+module.exports = En_Item00;

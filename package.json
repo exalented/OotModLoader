@@ -1,0 +1,29 @@
+{
+  "name": "oot-rando-coop",
+  "version": "2.0.0",
+  "main": "./src/index.html",
+  "private": true,
+  "scripts": {
+    "start": "node ./src/OotModLoader.js"
+  },
+  "bin": "./src/app.js",
+  "dependencies": {
+    "aes256": "^1.0.4",
+    "chalk": "^2.4.1",
+    "cross-spawn": "^6.0.5",
+    "download-file": "^0.1.5",
+    "express": "^4.16.3",
+    "hex-rgb": "^3.0.0",
+    "human-readable-ids": "^1.0.4",
+    "json-socket": "^0.3.0",
+    "jsonpack": "^1.1.5",
+    "nat-upnp": "^1.1.1",
+    "ncp": "^2.0.0",
+    "plugin-system": "^0.2.1",
+    "restify": "^7.2.1",
+    "serve-static-restify": "^2.1.0",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1",
+    "unzip": "^0.1.11"
+  }
+}

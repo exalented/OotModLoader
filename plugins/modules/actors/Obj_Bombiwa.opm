@@ -1,0 +1,17 @@
+﻿// Bombiwas. Need I explain?
+let Obj_Bombiwa = {
+    actor: "Obj_Bombiwa",
+    version_offsets: {
+        debug: 0x130,
+		10: 0x130
+    },
+    readHandler: "80",
+    actorid: 0x127,
+    actorCategory: 6,
+    template: "ConditionalKill",
+    conditional: function (packet) {
+        return packet.data.value === 0x0;
+    }
+}
+
+module.exports = Obj_Bombiwa;

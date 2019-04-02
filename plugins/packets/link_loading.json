@@ -1,0 +1,18 @@
+{
+  "packet_id": "link_loading",
+  "readHandler": "bundle",
+  "bundles": [
+    {
+      "key": "link_loading",
+      "addr": "@link_loading@",
+      "offset": "0x0",
+      "readHandler": "80"
+    },
+    {
+      "key": "link_entrance",
+      "addr": "@last_entrance@",
+      "offset": "0x0",
+      "readHandler": "81"
+    }
+  ]
+}

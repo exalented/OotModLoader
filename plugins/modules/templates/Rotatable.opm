@@ -1,0 +1,37 @@
+﻿class Rotatable {
+    constructor() {
+        this.id = this.constructor.name;
+    }
+
+    template(parent, api, emulator, data) {
+        if (data.hasOwnProperty("filter")) {
+            parent.api.computeActor(data.actor + "|" + data.offset, data.actorid, parent.api.actorCategories[data.actorCategory], data.offset, data.readHandler, data.size, data.filter);
+        } else {
+            parent.api.computeActor(data.actor + "|" + data.offset, data.actorid, parent.api.actorCategories[data.actorCategory], data.offset, data.readHandler, data.size);
+        }
+
+        api.registerClientSidePacketHook(data.actor + "|" + data.offset, function (packet) {
+            if (parent._forbidSync) {
+                return false;
+            }
+            packet.addr = packet.data.hash;
+            packet.offset = data.offset;
+            packet.data = packet.data.value;
+            packet.writeHandler = data.writeHandler;
+            return true;
+        });
+
+        api.registerPacketTransformer(data.actor + "|" + data.offset, function (packet) {
+            if (parent._forbidSync) {
+                return false;
+            }
+            let copy = JSON.parse(JSON.stringify(packet));
+            copy["payload"]["offset"] = 0x16;
+            emulator.sendViaSocket(copy.payload);
+            console.log(JSON.stringify(copy, null, 2));
+            return packet;
+        });
+    }
+}
+
+module.exports = new Rotatable();

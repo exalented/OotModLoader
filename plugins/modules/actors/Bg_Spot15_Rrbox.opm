@@ -1,0 +1,16 @@
+﻿// Milk Crates
+let Bg_Spot15_Rrbox = {
+    actor: "Bg_Spot15_Rrbox",
+    version_offsets: {
+        debug: 0x24,
+		10: 0x24
+    },
+    readHandler: "range",
+    writeHandler: "actorRange",
+    size: 0xC,
+    actorid: 0x0107,
+    actorCategory: 1,
+    template: "Pushable"
+}
+
+module.exports = Bg_Spot15_Rrbox;

@@ -1,0 +1,19 @@
+﻿// Treasure Chests.
+let En_Box = {
+    actor: "En_Box",
+    version_offsets: {
+        debug: 0x1F4,
+		10: 0x1E4
+    },
+    readHandler: "81",
+    writeHandler: "actor",
+    actorid: 0x000A,
+    actorCategory: 11,
+    template: "Conditional",
+    conditional: function (packet) {
+        return packet.data.value !== 0xFFFF || packet.data.value === 0x0078;
+    },
+    value: 0xFF88
+}
+
+module.exports = En_Box;

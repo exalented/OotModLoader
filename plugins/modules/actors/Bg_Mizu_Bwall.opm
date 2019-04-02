@@ -1,0 +1,18 @@
+﻿// Switch - Eye variant.
+let Bg_Mizu_Bwall = {
+    actor: "Bg_Mizu_Bwall",
+    version_offsets: {
+        debug: 0x017D,
+		10: 0x016D
+    },
+    readHandler: "80",
+    writeHandler: "actor_80",
+    actorid: 0x59,
+    actorCategory: 1,
+    template: "Conditional",
+    conditional: function (packet) {
+        return packet.data.value > 0;
+    }
+}
+
+module.exports = Bg_Mizu_Bwall;

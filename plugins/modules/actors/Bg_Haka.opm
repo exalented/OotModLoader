@@ -1,0 +1,16 @@
+﻿// Gravestone
+let Bg_Haka = {
+    actor: "Bg_Haka",
+    version_offsets: {
+        debug: 0x24,
+		10: 0x24
+    },
+    readHandler: "range",
+    writeHandler: "actorRange",
+    size: 0xC,
+    actorid: 0x009D,
+    actorCategory: 1,
+    template: "Pushable"
+}
+
+module.exports = Bg_Haka;

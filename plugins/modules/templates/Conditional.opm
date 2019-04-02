@@ -1,0 +1,52 @@
+﻿class Conditional {
+    constructor() {
+        this.id = this.constructor.name;
+    }
+
+    template(parent, api, emulator, data) {
+        if (data.hasOwnProperty("filter")) {
+            parent.api.computeActor(data.actor + "|" + data.offset, data.actorid, parent.api.actorCategories[data.actorCategory], data.offset, data.readHandler, data.size, data.filter);
+        } else {
+            parent.api.computeActor(data.actor + "|" + data.offset, data.actorid, parent.api.actorCategories[data.actorCategory], data.offset, data.readHandler, data.size);
+        }
+
+        api.registerClientSidePacketHook(data.actor + "|" + data.offset, function (packet) {
+            console.log(packet);
+            if (parent._forbidSync) {
+                if (data.hasOwnProperty("overrideSafety")){
+                }else{
+                    return false;
+                }
+            }
+            if (!data.conditional(packet)) {
+                return false;
+            }
+            packet.addr = packet.data.hash;
+            if (data.hasOwnProperty("write_offset")) {
+                packet.offset = data.write_offset;
+            } else {
+                packet.offset = data.offset;
+            }
+            if (data.hasOwnProperty("value")) {
+                packet.data = data.value;
+            } else {
+                packet.data = packet.data.value;
+            }
+            packet.writeHandler = data.writeHandler;
+            return true;
+        });
+
+        api.registerPacketTransformer(data.actor + "|" + data.offset, function (packet) {
+            if (parent._forbidSync) {
+                if (data.hasOwnProperty("overrideSafety")){
+                }else{
+                    return false;
+                }
+            }
+            console.log(packet);
+            return packet;
+        });
+    }
+}
+
+module.exports = new Conditional();

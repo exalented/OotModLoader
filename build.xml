@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="OotRandoCoop" default="build" basedir=".">
+
+  <property name="project-name" value="${ant.project.name}"/>
+  <property name="ini" value="./OotRandoCoop-config.ini"/>
+  <property name="dist" value="./dist"/>
+  <property name="bin" value="./bin"/>
+  <property name="electron" value="./electron"/>
+  <property name="major" value="1"/>
+  <property name="minor" value="0"/>
+  <property name="emu" value="./src/for_emulator"/>
+  <property name="release_type" value="BETA"/>
+
+  <condition property="cmd.exec" value="cmd" else="/bin/sh">
+    <os family="windows"/>
+  </condition>
+
+  <condition property="cmd.con" value="/c" else="-c">
+    <os family="windows"/>
+  </condition>
+
+  <target name="clean">
+    <delete dir="${dist}"/>
+    <delete dir="${bin}"/>
+    <delete dir="${electron}"/>
+    <mkdir dir="${dist}"/>
+    <mkdir dir="${bin}"/>
+    <mkdir dir="${bin}/Lua"/>
+    <mkdir dir="${electron}"/>
+  </target>
+
+  <target name="build">
+    <antcall target="node"/>
+    <antcall target="build_windows"/>
+    <antcall target="build_linux"/>
+    <antcall target="build_mac"/>
+    <antcall target="GUI"/>
+    <antcall target="zip"/>
+  </target>
+
+  <target name="setup">
+    <echo message="Setting up env..."/>
+    <exec executable="${cmd.exec}">
+      <arg value="${cmd.con}"/>
+      <arg value="npm install -g pkg"/>
+    </exec>
+    <exec executable="${cmd.exec}">
+      <arg value="${cmd.con}"/>
+      <arg value="npm install -g electron"/>
+    </exec>
+    <exec executable="${cmd.exec}">
+      <arg value="${cmd.con}"/>
+      <arg value="npm install -g asar"/>
+    </exec>
+    <exec executable="${cmd.exec}">
+      <arg value="${cmd.con}"/>
+      <arg value="npm install -g electron-packager"/>
+    </exec>
+    <exec executable="cmd">
+      <arg value="/c"/>
+      <arg value="npm install"/>
+    </exec>
+    <propertyfile file="build.properties">
+      <entry key="major" type="int" value="${major}" operation="="/>
+      <entry key="minor" type="int" value="${minor}" operation="="/>
+      <entry key="build.number" default="00" operation="+" pattern="0" type="int"/>
+    </propertyfile>
+  </target>
+
+  <target name="copy_files">
+    <copy todir="${tfolder}/Lua">
+      <fileset dir="${bin}/Lua" includes="**"/>
+    </copy>
+    <copy todir="${tfolder}">
+      <fileset dir="./luasocket" includes="**"/>
+    </copy>
+    <copy todir="${tfolder}/plugins">
+      <fileset dir="plugins" includes="**"/>
+    </copy>
+    <copy todir="${tfolder}/mods">
+      <fileset dir="mods" includes="**"/>
+    </copy>
+    <copy todir="${tfolder}/rom">
+      <fileset dir="rom" includes="**"/>
+    </copy>
+    <copy file="config.ini" tofile="${tfolder}/config.ini"/>
+    <copy file="OotModLoader-config.json" tofile="${tfolder}/OotModLoader-config.json"/>
+  </target>
+
+
+  <target name="compile_scripts">
+    <echo message="Compiling scripts..."/>
+    <copy todir="${bin}">
+      <fileset dir="./src" includes="*.js"/>
+    </copy>
+    <copy todir="${bin}/Lua">
+      <fileset dir="./src/for_emulator/Lua"/>
+    </copy>
+    <replace file="${bin}/OotVersion.js" propertyFile="build.properties">
+      <replacefilter token="@major@" property="major"/>
+      <replacefilter token="@minor@" property="minor"/>
+      <replacefilter token="@buildNumber@" property="build.number"/>
+      <replacefilter token="@release_type@" value="${release_type}"/>
+      <replacefilter token="@BUILD_TYPE@" value="CLI"/>
+    </replace>
+    <replace file="${bin}/Lua/OotModLoader.lua" propertyFile="build.properties">
+      <replacefilter token="@major@" property="major"/>
+      <replacefilter token="@minor@" property="minor"/>
+      <replacefilter token="@release_type@" value="${release_type}"/>
+      <replacefilter token="@buildNumber@" property="build.number"/>
+    </replace>
+
+    <echo message="Building GUI builds..."/>
+  </target>
+
+  <target name="node" depends="clean, setup, compile_scripts">
+    <mkdir dir="${bin}/node"/>
+    <copy file="package.json" tofile="${bin}/node/package.json"/>
+    <copy todir="${bin}/node">
+      <fileset dir="${bin}" includes="*.js"/>
+    </copy>
+    <antcall target="copy_files">
+      <param name="tfolder" value="${bin}/node"/>
+    </antcall>
+  </target>
+
+  <target name="build_windows">
+    <property file="build.properties"/>
+    <echo message="Building Windows binaries..."/>
+    <exec executable="${cmd.exec}">
+      <arg value="${cmd.con}"/>
+      <arg value="pkg ${bin}/OotModLoader.js --targets node8-win-x64 -o ./bin/win/x64/OotModLoader-CLI_${major}.${minor}.${build.number}_win64"/>
+    </exec>
+    <antcall target="copy_files">
+      <param name="tfolder" value="${bin}/win/x64"/>
+    </antcall>
+  </target>
+
+  <target name="build_linux">
+    <property file="build.properties"/>
+    <echo message="Building Linux binaries"/>
+    <exec executable="${cmd.exec}">
+      <arg value="${cmd.con}"/>
+      <arg value="pkg ${bin}/OotModLoader.js --targets node8-linux-x64 -o ./bin/linux/x64/OotRandoCoop_${major}.${minor}.${build.number}_linux64"/>
+    </exec>
+    <antcall target="copy_files">
+      <param name="tfolder" value="${bin}/linux/x64"/>
+    </antcall>
+  </target>
+
+  <target name="build_mac">
+    <property file="build.properties"/>
+    <echo message="Building Mac binaries..."/>
+    <exec executable="${cmd.exec}">
+      <arg value="${cmd.con}"/>
+      <arg value="pkg ${bin}/OotModLoader.js --targets node8-macos-x64 -o ./bin/macos/x64/OotRandoCoop_${major}.${minor}.${build.number}_macos64.app"/>
+    </exec>
+    <antcall target="copy_files">
+      <param name="tfolder" value="${bin}/macos/x64"/>
+    </antcall>
+  </target>
+
+  <target name="GUI" depends="compile_scripts">
+    <copy todir="${electron}">
+      <fileset dir="./src" includes="*.js"/>
+    </copy>
+    <copy todir="${electron}/node_modules">
+      <fileset dir="./node_modules"/>
+    </copy>
+    <copy todir="${electron}">
+      <fileset dir="./GUI"/>
+    </copy>
+    <mkdir dir="${electron}/Lua"/>
+    <copy todir="${electron}/Lua">
+      <fileset dir="./src/for_emulator/Lua"/>
+    </copy>
+    <replace file="${electron}/OotVersion.js" propertyFile="build.properties">
+      <replacefilter token="@major@" property="major"/>
+      <replacefilter token="@minor@" property="minor"/>
+      <replacefilter token="@buildNumber@" property="build.number"/>
+      <replacefilter token="@release_type@" value="${release_type}"/>
+      <replacefilter token="@BUILD_TYPE@" value="GUI"/>
+    </replace>
+    <replace file="${electron}/OotModLoader.js" propertyFile="build.properties">
+      <replacefilter token="@major@" property="major"/>
+      <replacefilter token="@minor@" property="minor"/>
+      <replacefilter token="@buildNumber@" property="build.number"/>
+      <replacefilter token="@release_type@" value="${release_type}"/>
+      <replacefilter token="@BUILD_TYPE@" value="GUI"/>
+    </replace>
+    <replace file="${electron}/Lua/OotModLoader.lua" propertyFile="build.properties">
+      <replacefilter token="@major@" property="major"/>
+      <replacefilter token="@minor@" property="minor"/>
+      <replacefilter token="@buildNumber@" property="build.number"/>
+      <replacefilter token="@release_type@" value="${release_type}"/>
+    </replace>
+    <exec executable="${cmd.exec}">
+      <arg value="${cmd.con}"/>
+      <arg value="asar p ${electron} ${bin}/app.asar"/>
+    </exec>
+    <exec executable="${cmd.exec}">
+      <arg value="${cmd.con}"/>
+      <arg value="electron-packager ${electron} --all --out=${bin} --prebuilt-asar=${bin}/app.asar --electron-version=4.1.2 --icon 'OotOnline_Icon.ico'"/>
+    </exec>
+    <antcall target="copy_files">
+      <param name="tfolder" value="${bin}/OotModLoader-GUI-linux-x64"/>
+    </antcall>
+    <antcall target="copy_files">
+      <param name="tfolder" value="${bin}/OotModLoader-GUI-win32-x64"/>
+    </antcall>
+  </target>
+
+  <target name="zip">
+    <property file="build.properties"/>
+    <zip destfile="${dist}/OotModLoader-CLI_${major}.${minor}.${build.number}_${release_type}_win64.zip" basedir="./bin/win/x64"/>
+    <zip destfile="${dist}/OotModLoader-CLI_${major}.${minor}.${build.number}_${release_type}_linux64.zip" basedir="./bin/linux/x64"/>
+    <zip destfile="${dist}/OotModLoader-CLI_${major}.${minor}.${build.number}_${release_type}_macos64.zip" basedir="./bin/macos/x64"/>
+    <!-- GUI Stuff -->
+    <zip destfile="${dist}/OotModLoader-GUI_${major}.${minor}.${build.number}_${release_type}_win64.zip" basedir="${bin}/OotModLoader-GUI-win32-x64"/>
+    <zip destfile="${dist}/OotModLoader-CLI_${major}.${minor}.${build.number}_${release_type}_Node.zip" basedir="${bin}/node"/>
+    <copy todir="${dist}">
+      <fileset dir="./dev_portal"/>
+    </copy>
+    <exec executable="${cmd.exec}">
+      <arg value="${cmd.con}"/>
+      <arg value="node ${dist}/generate_list.js"/>
+    </exec>
+    <zip destfile="${dist}/OotModLoader_DevPortal.war" basedir="${dist}"/>
+  </target>
+
+</project>

@@ -1,0 +1,17 @@
+﻿// 2D Bombable Wall
+let bombable_wall_2d = {
+    actor: "bombable_wall_2d",
+    version_offsets: {
+        debug: 0x288,
+		10: 0x288
+    },
+    readHandler: "fourBytes",
+    actorid: 0xD0,
+    actorCategory: 1,
+    template: "ConditionalKill",
+    conditional: function (packet) {
+        return packet.data.value === 0x0;
+    }
+}
+
+module.exports = bombable_wall_2d;

@@ -1,0 +1,137 @@
+﻿{
+  "packet_id": "save_data",
+  "readHandler": "bundle",
+  "notEveryFrame": true,
+  "bundles": [
+    {
+      "key": "death_counter",
+      "addr": "@save_data@",
+      "offset": "0x0022",
+      "readHandler": "81"
+    },
+    {
+      "key": "heart_containers",
+      "addr": "@save_data@",
+      "offset": "0x002E",
+      "readHandler": "81"
+    },
+    {
+      "key": "biggoron_sword_flag",
+      "addr": "@save_data@",
+      "offset": "0x003E",
+      "readHandler": "80"
+    },
+    {
+      "key": "inventory",
+      "addr": "@save_data@",
+      "offset": "0x0074",
+      "readHandler": "range",
+      "size": "0x18"
+    },
+    {
+      "key": "magic_beans",
+      "addr": "@save_data@",
+      "offset": "0x009B",
+      "readHandler": "80"
+    },
+    {
+      "key": "equipment",
+      "addr": "@save_data@",
+      "offset": "0x009C",
+      "readHandler": "range",
+      "size": "0x2"
+    },
+    {
+      "key": "upgrades",
+      "addr": "@save_data@",
+      "offset": "0x00A1",
+      "readHandler": "range",
+      "size": "0x3"
+    },
+    {
+      "key": "quest_items",
+      "addr": "@save_data@",
+      "offset": "0x00A5",
+      "readHandler": "range",
+      "size": "0x3"
+    },
+    {
+      "key": "dungeon_items",
+      "addr": "@save_data@",
+      "offset": "0x00A8",
+      "readHandler": "range",
+      "size": "0x14"
+    },
+    {
+      "key": "double_defense",
+      "addr": "@save_data@",
+      "offset": "0x00CF",
+      "readHandler": "80"
+    },
+    {
+      "key": "skulltula_count",
+      "addr": "@save_data@",
+      "offset": "0x00D0",
+      "readHandler": "81"
+    },
+    {
+      "key": "skulltula_c_flags",
+      "addr": "@save_data@",
+      "offset": "0x0E9C",
+      "readHandler": "range",
+      "size": "0x18"
+    },
+    {
+      "key": "scene_data",
+      "addr": "@save_data@",
+      "offset": "0x00D4",
+      "readHandler": "range",
+      "size": "0x0B0C"
+    },
+    {
+      "key": "event_flags",
+      "addr": "@save_data@",
+      "offset": "0x0ED4",
+      "readHandler": "range",
+      "size": "0x1C"
+    },
+    {
+      "key": "item_flags",
+      "addr": "@save_data@",
+      "offset": "0x0EF0",
+      "readHandler": "range",
+      "size": "0x8"
+    },
+    {
+      "key": "inf_table",
+      "addr": "@save_data@",
+      "offset": "0x0EF8",
+      "readHandler": "range",
+      "size": "0x3C"
+    },
+    {
+      "key": "poe_score_card",
+      "addr": "@save_data@",
+      "offset": "0x0EBE",
+      "readHandler": "81"
+    },
+    {
+      "key": "magic_bool",
+      "addr": "@save_data@",
+      "offset": "0x3A",
+      "readHandler": "80"
+    },
+    {
+      "key": "magic_size",
+      "addr": "@save_data@",
+      "offset": "0x3C",
+      "readHandler": "80"
+    },
+    {
+      "key": "magic_limit",
+      "addr": "@save_data@",
+      "offset": "0x13F4",
+      "readHandler": "81"
+    }
+  ]
+}

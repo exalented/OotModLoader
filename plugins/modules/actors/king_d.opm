@@ -1,0 +1,24 @@
+// King Dodongo
+let King_D = {
+    actor: "King_D",
+    version_offsets: {
+        debug: 0x4,
+		10: 0x4
+    },
+    readHandler: "fourBytes",
+    actorid: 0x0012,
+    actorCategory: 9,
+    template: "Boss",
+    filter: {
+        offset: 0x1C,
+        data: 0xFF
+    },
+    exit: 0x013D,
+    cutscene: 0xFFF1,
+    conditional: function (packet) {
+        console.log(packet)
+        return packet.data.value === 0x00000070;
+    }
+}
+
+module.exports = King_D;

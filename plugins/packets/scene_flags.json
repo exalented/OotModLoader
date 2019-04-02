@@ -1,0 +1,46 @@
+﻿{
+  "packet_id": "scene_flags",
+  "readHandler": "bundle",
+  "bundles": [
+    {
+      "key": "room_clear",
+      "addr": "@room_clear@",
+      "offset": "0x0",
+      "readHandler": "range",
+      "size": "0x4"
+    },
+    {
+      "key": "switch_flags",
+      "addr": "@switch_flags@",
+      "offset": "0x0",
+      "readHandler": "range",
+      "size": "0x8"
+    },
+    {
+      "key": "chest_flags",
+      "addr": "@chest_flags@",
+      "offset": "0x0",
+      "readHandler": "range",
+      "size": "0x4"
+    },
+    {
+      "key": "collectable_flags",
+      "addr": "@collectable_flags@",
+      "offset": "0x0",
+      "readHandler": "range",
+      "size": "0x8"
+    },
+    {
+      "key": "scene",
+      "addr": "@scene@",
+      "offset": "0x0",
+      "readHandler": "81"
+    },
+    {
+      "key": "room",
+      "addr": "@room@",
+      "offset": "0x0",
+      "readHandler": "80"
+    }
+  ]
+}

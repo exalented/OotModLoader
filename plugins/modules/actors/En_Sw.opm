@@ -1,0 +1,17 @@
+﻿// Golden Skulltulas.
+let En_Sw = {
+    actor: "En_Sw",
+    version_offsets: {
+        debug: 0x130,
+		10: 0x130
+    },
+    readHandler: "80",
+    actorid: 0x0095,
+    actorCategory: 4,
+    template: "ConditionalKill",
+    conditional: function (packet) {
+        return packet.data.value === 0x0;
+    }
+}
+
+module.exports = En_Sw;

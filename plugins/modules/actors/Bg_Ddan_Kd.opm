@@ -1,0 +1,16 @@
+﻿// Dodongo stairs
+let Bg_Ddan_Kd = {
+    actor: "Bg_Ddan_Kd",
+    version_offsets: {
+        debug: 0x24,
+		10: 0x24
+    },
+    readHandler: "range",
+    writeHandler: "actorRange",
+    size: 0xC,
+    actorid: 0x005C,
+    actorCategory: 1,
+    template: "Pushable"
+}
+
+module.exports = Bg_Ddan_Kd;

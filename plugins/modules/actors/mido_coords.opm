@@ -1,0 +1,19 @@
+// Mido
+let Mido_walking = {
+    actor: "Mido_walking",
+    version_offsets: {
+        debug: 0x60,
+        10: 0x60
+    },
+    readHandler: "range",
+    writeHandler: "actorRange",
+    size: 0xC, 
+    actorid: 0x016D,
+    actorCategory: 4,
+    template: "Conditional",
+    conditional: function (packet) {
+        return true;
+    }
+}
+
+module.exports = Mido_walking;

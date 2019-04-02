@@ -1,0 +1,17 @@
+.vs/
+packages/
+node_modules/
+src/for_emulator/Lua/Vanillamizer OoT.bin
+OotModLoader-config.json
+apache-ant-1.10.5/
+bin/
+dist/
+rom stuff/
+mods/
+temp/
+rom/
+lua tests/
+electron/
+electron_testing/
+turned_off_plugins/
+.vscode/

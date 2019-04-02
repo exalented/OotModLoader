@@ -1,0 +1,15 @@
+﻿// Red Ice
+let Bg_Ice_Shelter = {
+    actor: "Bg_Ice_Shelter",
+    version_offsets: {
+        debug: 0x154,
+        10: 0x154
+    },
+    readHandler: "actor_behavior",
+    writeHandler: "actor_behavior",
+    actorid: 0x00EF,
+    actorCategory: 1,
+    template: "Behavior"
+}
+
+module.exports = Bg_Ice_Shelter;

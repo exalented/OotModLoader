@@ -1,0 +1,16 @@
+// Cobra Statue
+let Cobra_statue = {
+    actor: "Cobra_statue",
+    version_offsets: {
+        debug: 0xB4,
+		    10: 0xB4
+    },
+    readHandler: "range",
+    writeHandler: "actorRange",
+    size: 0x6,
+    actorid: 0x00FC,
+    actorCategory: 6,
+    template: "Rotatable"
+}
+
+module.exports = Cobra_statue;

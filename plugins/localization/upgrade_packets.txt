@@ -1,0 +1,8 @@
+upgrade_deku_stick
+upgrade_deku_nuts
+upgrade_scale
+upgrade_deku_seeds
+upgrade_wallet
+upgrade_strength
+upgrade_quiver
+upgrade_bombs

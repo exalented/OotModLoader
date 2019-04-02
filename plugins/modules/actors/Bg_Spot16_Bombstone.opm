@@ -1,0 +1,17 @@
+﻿// Dodongo's entrance rock.
+let Bg_Spot16_Bombstone = {
+    actor: "Bg_Spot16_Bombstone",
+    version_offsets: {
+        debug: 0x130,
+		10: 0x130
+    },
+    readHandler: "80",
+    actorid: 0x00CD,
+    actorCategory: 6,
+    template: "ConditionalKill",
+    conditional: function (packet) {
+        return packet.data.value === 0x0;
+    }
+}
+
+module.exports = Bg_Spot16_Bombstone;

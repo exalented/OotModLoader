@@ -1,0 +1,16 @@
+﻿{
+  "global": "0x1C84A0",
+  "table_offset": "0x1C34",
+  "switch": 0,
+  "prop_1": 8,
+  "player": 16,
+  "bombs": 24,
+  "npcs": 32,
+  "enemy": 40,
+  "prop": 48,
+  "item_action": 56,
+  "misc": 64,
+  "boss": 72,
+  "door": 80,
+  "chests": 88
+}

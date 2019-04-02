@@ -1,0 +1,18 @@
+﻿// Ladder in Deku Tree slingshot room.
+let Bg_Ydan_Maruta = {
+    actor: "Bg_Ydan_Maruta",
+    version_offsets: {
+        debug: 0x17D,
+		10: 0x16D
+    },
+	readHandler: "80",
+    writeHandler: "actor_80",
+    actorid: 0x0051,
+    actorCategory: 6,
+    template: "Conditional",
+    conditional: function (packet) {
+        return packet.data.value == 0x0B;
+    }
+}
+
+module.exports = Bg_Ydan_Maruta;

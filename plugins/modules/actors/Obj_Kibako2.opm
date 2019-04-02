@@ -1,0 +1,20 @@
+﻿// Large Crate
+let Obj_Kibako2 = {
+    actor: "Obj_Kibako2",
+    version_offsets: {
+        debug: 0x130,
+		10: 0x130
+    },
+    readHandler: "80",
+    writeHandler: "actor_80",
+    actorid: 0x1A0,
+    actorCategory: 1,
+    template: "Conditional",
+    conditional: function (packet) {
+        return packet.data.value === 0;
+    },
+    write_offset: 0x19,
+    value: 0x1
+}
+
+module.exports = Obj_Kibako2;

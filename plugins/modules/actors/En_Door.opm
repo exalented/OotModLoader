@@ -1,0 +1,20 @@
+﻿// Standard Door
+let En_Door = {
+    actor: "En_Door",
+    version_offsets: {
+        debug: 0x197,
+        10: 0x187
+    },
+    readHandler: "80",
+    writeHandler: "actor_80",
+    actorid: 0x0009,
+    actorCategory: 10,
+    template: "Conditional",
+    overrideSafety: true,
+    value: 0,
+    conditional: function (packet) {
+        return packet.data.value === 0;
+    }
+}
+
+module.exports = En_Door;

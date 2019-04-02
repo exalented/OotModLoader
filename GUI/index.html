@@ -1,0 +1,111 @@
+<html>
+
+<head>
+    <title>OotModLoader Launcher</title>
+    <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="./jquery-ui-1.12.1.custom/jquery-ui.min.css">
+    <link rel="stylesheet" href="./jquery-ui-1.12.1.custom/jquery-ui.theme.min.css">
+    <script src="./jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script src="https://unpkg.com/jquery.terminal@1.x.x/js/jquery.terminal.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/jquery.terminal@1.x.x/css/jquery.terminal.min.css" />
+    <script>if (window.module) module = window.module;</script>
+    <script>
+        $(function () {
+            $("#tabs").tabs();
+        });
+        $(function () {
+            $(".widget input[type=submit], .widget a, .widget button").button();
+            $("button, a").click(function (event) { });
+        });
+    </script>
+    <style>
+        body {
+            background-color: black;
+            background-image: url("./images/oototransparent.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+        }
+
+        #terminal {
+            width: auto;
+            height: 300px;
+            padding: 20px;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">General Settings</a></li>
+            <li><a href="#tabs-2">Customization</a></li>
+            <li><a href="#tabs-3">Status</a></li>
+            <li><a href="#tabs-4">Lobby Browser</a></li>
+            <li><a href="#tabs-5">Console</a></li>
+        </ul>
+        <div id="tabs-1">
+            <h1>Server Settings</h1>
+            <label for="server">Server: </label><input type="text" name="server" id="_master_server_ip" /><br />
+            <label for="port">Port: </label><input type="text" name="port" id="_master_server_port" /><br />
+            <label for="isMaster">Host Server: </label><input type="checkbox" name="isMaster" id="_isMaster" /><br />
+            <h1>Client Settings</h1>
+            <label for="nickname">Nickname: </label><input type="text" name="nickname" id="_nickname" /><br />
+            <label for="isClient">Run Client: </label><input type=checkbox name="isClient" id="_isClient" /><br />
+            <label for="game_room">Lobby: </label><input type="text" name="game_room" id="_GAME_ROOM" /><br />
+            <label for="game_password">Password: </label><input type="password" name="game_password"
+                id="_game_password" /><br />
+            <label for="mod">Romhack: </label><select id="mod">
+                <option value="Vanilla">None</option>
+            </select>
+            <br />
+            <div class="widget">
+                <button id="connect" onclick="hooks.onStartClient()">Connect to Server</button>
+            </div>
+        </div>
+        <div id="tabs-2">
+            <label for="kokiri">Kokiri Tunic Color:</label><input type="color" id="kokiri" value="#ff0000"
+                onchange="hooks.onConfigChanged()" /><br />
+            <label for="goron">Goron Tunic Color:</label><input type="color" id="goron" value="#ff0000"
+                onchange="hooks.onConfigChanged()" /><br />
+            <label for="zora">Zora Tunic Color:</label><input type="color" id="zora" value="#ff0000"
+                onchange="hooks.onConfigChanged()" /><br />
+        </div>
+        <div id="tabs-3">
+            Nothing on this tab currently works, sorry!<br />
+            Connection Status: <li>Not connected.</li>
+            <br />
+            Player List:
+            <li>None.</li>
+        </div>
+        <div id="tabs-4">
+            Coming soon™.
+        </div>
+        <div id="tabs-5">
+            <div id="terminal"></div>
+        </div>
+    </div>
+
+    <script>
+        let term = $('#terminal').terminal(function (command) {
+        }, {
+                greetings: 'OotModLoader',
+                name: 'OotModLoader',
+                prompt: '> '
+            });
+        let hooks = require('./renderer.js');
+        hooks.console = function(msg){
+            term.echo(msg);
+        }
+    </script>
+</body>
+
+</html>

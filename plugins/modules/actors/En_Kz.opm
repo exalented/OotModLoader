@@ -1,0 +1,16 @@
+﻿// King Zora
+let En_Kz = {
+    actor: "En_Kz",
+    version_offsets: {
+        debug: 0x24,
+		10: 0x24
+    },
+    readHandler: "range",
+    writeHandler: "actorRange",
+    size: 0xC,
+    actorid: 0x0164,
+    actorCategory: 4,
+    template: "Pushable"
+}
+
+module.exports = En_Kz;

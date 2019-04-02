@@ -1,0 +1,19 @@
+// Phantom Ganon
+let Phantom_Ganon = {
+    actor: "Phantom_Ganon",
+    version_offsets: {
+        debug: 0x180,
+        10: 0x180
+    },
+    readHandler: "actor_behavior",
+    actorid: 0x0028,
+    actorCategory: 9,
+    template: "Boss",
+    exit: 0x00EE,
+    cutscene: 0xFFF8,
+    conditional: function (packet) {
+        return packet.data.value === 0x260C;
+    }
+}
+
+module.exports = Phantom_Ganon;

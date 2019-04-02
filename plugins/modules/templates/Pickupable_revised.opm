@@ -1,0 +1,68 @@
+﻿class Pickupable_revised {
+    constructor() {
+        this.id = this.constructor.name;
+    }
+
+    template(parent, api, emulator, data) {
+        if (data.hasOwnProperty("filter")) {
+            parent.api.computeActor(data.actor + "|" + data.offset, data.actorid, parent.api.actorCategories[data.actorCategory], data.offset, data.readHandler, data.size, data.filter);
+        } else {
+            parent.api.computeActor(data.actor + "|" + data.offset, data.actorid, parent.api.actorCategories[data.actorCategory], data.offset, data.readHandler, data.size);
+        }
+
+        api.registerClientSidePacketHook(data.actor + "|" + data.offset, function (packet) {
+            if (parent._forbidSync) {
+                return false;
+            }
+            packet.addr = packet.data.hash;
+            if (data.hasOwnProperty("write_offset")) {
+                packet.offset = data.write_offset;
+            } else {
+                packet.offset = data.offset;
+            }
+            if (data.hasOwnProperty("value")) {
+                packet.data = data.value;
+            } else {
+                packet.data = packet.data.value;
+            }
+            packet.writeHandler = data.writeHandler;
+            return true;
+        });
+
+        api.registerPacketTransformer(data.actor + "|" + data.offset, function (packet) {
+            if (parent._forbidSync) {
+                return false;
+            }
+            if (packet.payload.data > 0) {
+                let ooto = api.getModule("OotOnline");
+                let puppet_pointer = ooto.PuppetMap[ooto._playerToPuppetMap[packet.uuid]].puppet._pointer;
+                packet.payload.data = puppet_pointer;
+                let copy = JSON.parse(JSON.stringify(packet));
+                copy.payload.addr = puppet_pointer;
+                copy.payload["isPointer"] = true;
+                copy.payload.writeHandler = "actor_word_copy_reverse";
+                copy.payload.data = packet.payload.addr;
+                copy.payload.offset = 0x11C;
+                emulator.sendViaSocket(copy.payload);
+                console.log(copy);
+                console.log(packet);
+            } else {
+                let ooto = api.getModule("OotOnline");
+                let puppet_pointer = ooto.PuppetMap[ooto._playerToPuppetMap[packet.uuid]].puppet._pointer;
+                packet.payload.data = puppet_pointer;
+                let copy = JSON.parse(JSON.stringify(packet));
+                copy.payload.addr = puppet_pointer;
+                copy.payload["isPointer"] = true;
+                copy.payload.writeHandler = "fourBytes";
+                copy.payload.data = 0x0000000;
+                copy.payload.offset = 0x11C;
+                emulator.sendViaSocket(copy.payload);
+                console.log(copy);
+                return null;
+            }
+            return packet;
+        });
+    }
+}
+
+module.exports = new Pickupable_revised();

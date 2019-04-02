@@ -1,0 +1,127 @@
+{
+  "packet_id": "OotOnline",
+  "readHandler": "bundle",
+  "protocol": "udp",
+  "bundles": [
+    {
+      "key": "link_pos",
+      "addr": "@link_instance@",
+      "offset": "0x24",
+      "readHandler": "range",
+      "size": "0xC"
+    },
+    {
+      "key": "link_rot",
+      "addr": "@link_instance@",
+      "offset": "0xB4",
+      "readHandler": "range",
+      "size": "0x8"
+    },
+    {
+      "key": "link_anim",
+      "addr": "0x600000",
+      "offset": "0x0",
+      "readHandler": "range",
+      "size": "0x86"
+    },
+    {
+      "key": "puppet_0x140",
+      "addr": "@link_instance@",
+      "offset": "0x150",
+      "readHandler": "range",
+      "size": "0xC"
+    },
+    {
+      "key": "puppet_0x14C",
+      "addr": "@link_instance@",
+      "offset": "0x14C",
+      "readHandler": "range",
+      "size": "0x3"
+    },
+    {
+      "key": "link_tunic_color",
+      "addr": "@link_instance@",
+      "offset": "0x13C",
+      "readHandler": "80"
+    },
+    {
+      "key": "puppet_0x159",
+      "addr": "@link_instance@",
+      "offset": "0x1D9",
+      "readHandler": "80"
+    },
+    {
+      "key": "puppet_0x15A",
+      "addr": "@save_data@",
+      "offset": "0x37",
+      "readHandler": "80"
+    },
+    {
+      "key": "puppet_0x160",
+      "addr": "@link_instance@",
+      "offset": "0x84C",
+      "readHandler": "fourBytes"
+    },
+    {
+      "key": "puppet_0x164",
+      "addr": "@link_instance@",
+      "offset": "0x6B4",
+      "readHandler": "fourBytes"
+    },
+    {
+      "key": "puppet_0x15B",
+      "addr": "@link_instance@",
+      "offset": "0x144",
+      "readHandler": "80"
+    },
+    {
+      "key": "puppet_0x16C",
+      "addr": "@link_instance@",
+      "offset": "0x68",
+      "readHandler": "fourBytes"
+    },
+    {
+      "key": "puppet_0x171",
+      "addr": "@link_instance@",
+      "offset": "0x13F",
+      "readHandler": "80"
+    },
+    {
+      "key": "puppet_0x172",
+      "addr": "@link_instance@",
+      "offset": "0x14F",
+      "readHandler": "80"
+    },
+    {
+      "key": "link_gauntlets",
+      "addr": "@save_data@",
+      "offset": "0xA3",
+      "readHandler": "80"
+    },
+    {
+      "key": "puppet_0x174",
+      "addr": "@link_instance@",
+      "offset": "0x13D",
+      "readHandler": "81"
+    },
+    {
+      "key": "link_age",
+      "addr": "@link_instance@",
+      "offset": "0x0668",
+      "readHandler": "fourBytes"
+    },
+    {
+      "key": "link_health",
+      "addr": "@save_data@",
+      "offset": "0x0030",
+      "readHandler": "81"
+    },
+    {
+      "key": "link_shadow",
+      "addr": "@link_instance@",
+      "offset": "0xC0",
+      "readHandler": "range",
+      "size": "0x40"
+    }
+  ]
+}

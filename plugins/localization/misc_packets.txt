@@ -1,0 +1,9 @@
+biggoron
+heart_containers
+death_counter
+magic_beans
+double_defense
+big_poes
+magic_bool
+magic_size
+magic_limit

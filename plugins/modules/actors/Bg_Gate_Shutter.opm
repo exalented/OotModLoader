@@ -1,0 +1,16 @@
+﻿// Kakariko Gate
+let Bg_Gate_Shutter = {
+    actor: "Bg_Gate_Shutter",
+    version_offsets: {
+        debug: 0x24,
+		10: 0x24
+    },
+    readHandler: "range",
+    writeHandler: "actorRange",
+    size: 0xC,
+    actorid: 0x100,
+    actorCategory: 7,
+    template: "Pushable"
+}
+
+module.exports = Bg_Gate_Shutter;

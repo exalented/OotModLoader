@@ -1,0 +1,19 @@
+// Boss Volvagia
+let volvagia = {
+    actor: "volvagia",
+    version_offsets: {
+        debug: 0x180,
+        10: 0x180
+    },
+    readHandler: "actor_behavior",
+    actorid: 0x00A2,
+    actorCategory: 9,
+    template: "Boss",
+    exit: 0x0564,
+    cutscene: 0x0000,
+    conditional: function (packet) {
+        return packet.data.value === 0x19A8;
+    }
+}
+
+module.exports = volvagia;

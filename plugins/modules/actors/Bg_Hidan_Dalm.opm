@@ -1,0 +1,15 @@
+﻿// Megaton Statue
+let Bg_Hidan_Dalm = {
+    actor: "Bg_Hidan_Dalm",
+    version_offsets: {
+        debug: 0x154,
+        10: 0x154
+    },
+    readHandler: "actor_behavior",
+    writeHandler: "actor_behavior",
+    actorid: 0x0040,
+    actorCategory: 1,
+    template: "Behavior"
+}
+
+module.exports = Bg_Hidan_Dalm;

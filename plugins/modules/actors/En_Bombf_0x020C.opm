@@ -1,0 +1,19 @@
+﻿// Bomb flowers
+let En_Bombf = {
+    actor: "En_Bombf",
+    version_offsets: {
+        debug: 0x020C,
+		10: 0x1FC
+    },
+    readHandler: "range",
+    writeHandler: "actorRange",
+    size: 0x4,
+    actorid: 0x004C,
+    actorCategory: 6,
+    template: "Conditional",
+    conditional: function (packet) {
+        return true;
+    }
+}
+
+module.exports = En_Bombf;

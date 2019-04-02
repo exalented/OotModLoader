@@ -1,0 +1,21 @@
+// Sliding Doors
+let sliding_doors = {
+    actor: "sliding_doors",
+    version_offsets: {
+        debug: 0x15E,
+		    10: 0x15E
+    },
+    readHandler: "81",
+    writeHandler: "actor",
+    actorid: 0x002E,
+    actorCategory: 10,
+    value: 0,
+    template: "Conditional",
+    overrideSafety: true,
+    conditional: function (packet) {
+        console.log(JSON.stringify(packet));
+        return packet.data.value === 0;
+    }
+}
+
+module.exports = sliding_doors;

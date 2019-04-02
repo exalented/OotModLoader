@@ -1,0 +1,15 @@
+// Mido
+let Mido = {
+    actor: "Mido",
+    version_offsets: {
+        debug: 0x180,
+        10: 0x180
+    },
+    readHandler: "actor_behavior",
+    writeHandler: "actor_behavior",
+    actorid: 0x016D,
+    actorCategory: 4,
+    template: "Behavior"
+}
+
+module.exports = Mido;

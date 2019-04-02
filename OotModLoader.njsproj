@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{e13ad930-71ba-4f06-9d9f-482612eec044}</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <StartupFile>src\app.js</StartupFile>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+    <StartWebBrowser>False</StartWebBrowser>
+    <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Content Include="icon_9Pk_icon.ico" />
+    <Content Include="current_version.json" />
+    <Content Include="movement_test.json" />
+    <Content Include="Oot-Rando-Coop-config.json" />
+    <Content Include="package-lock.json" />
+    <Content Include="package.json" />
+    <Content Include="plugins\modules\actors\Bg_Ddan_Kd.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Dodoago.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Gate_Shutter.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Haka.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Heavy_Block.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Hidan_Dalm.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Mizu_Bwall.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Mori_Bigst.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Mori_Kaitenkabe.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Mori_Kaitenkabe_2.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Mori_Kaitenkabe_3.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Po_Event.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Po_Event_Blocks.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Spot02_Objects.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Spot15_Rrbox.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Spot16_Bombstone.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Ydan_Maruta.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Ydan_Sp.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Ydan_Sp_0x130.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Bg_Ydan_Sp_0x3.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\En_Bombf_0x01F9.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\En_Bombf_0x020C.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\En_Box.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\En_Ishi.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\En_Item00.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\En_Item00_0x11A.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\En_Kusa.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\En_Ru1.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\En_Sw.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Generic_Boss.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Generic_Enemy.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Obj_Bombiwa.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Obj_Kibako2.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Obj_Lift.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Obj_Oshihiki.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Obj_Switch.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Obj_Switch_03.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Obj_Timeblock.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\actors\Obj_Tsubo.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\SceneSyncAPI.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\templates\Behavior.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\templates\Conditional.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\templates\ConditionalKill.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\templates\Pickupable.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\templates\Pushable.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\modules\templates\Rotatable.opm">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\packets\link_sound.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\packets\save_data.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\packets\scene_flags.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\versions\debug\actor_lists.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\versions\debug\scenes.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="plugins\versions\debug\tokens.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="README.md" />
+    <Content Include="build.xml" />
+    <Content Include="GeneratePuppetPayload.js" />
+    <Content Include="floating\diff.txt" />
+    <Content Include="floating\license.txt" />
+    <Content Include="overlay\overlay.html" />
+    <Content Include="overlay\jquery-3.3.1.min.js" />
+    <Content Include="plugins\OotOnline.js" />
+    <Content Include="plugins\SceneSync.js" />
+    <Content Include="SecondClient\Oot-Rando-Coop-config.json" />
+    <Content Include="SecondClient\package-lock.json" />
+    <Content Include="SecondClient\package.json" />
+    <Content Include="src\app.js" />
+    <Content Include="src\fake_test_client.js" />
+    <Content Include="src\for_emulator\Lua\EmoteTester.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\for_emulator\Lua\GUIMockup.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\for_emulator\Lua\test\ACTOR_NAMES.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\for_emulator\Lua\test\CoreRebootTest.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\for_emulator\Lua\test\OverlayExtractor.lua">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="src\GamesharkToInjectConverter.js" />
+    <Content Include="src\OotAPI.js" />
+    <Content Include="src\OotBizHawk.js" />
+    <Content Include="src\OotClient.js" />
+    <Content Include="src\OotConfig.js" />
+    <Content Include="src\OotEncoder.js" />
+    <Content Include="src\OotFreespace.js" />
+    <Content Include="src\OotLogger.js" />
+    <Content Include="src\OotMasterServer.js" />
+    <Content Include="src\OotPluginLoader.js" />
+    <Content Include="src\OotUDP.js" />
+    <Content Include="src\OotVersion.js" />
+    <Content Include="plugins\packets\link_loading.json" />
+    <Content Include="plugins\packets\link_packet.json" />
+    <Content Include="plugins\targets\targets.json" />
+    <Content Include="SecondClient\bin\app.js" />
+    <Content Include="SecondClient\bin\fake_test_client.js" />
+    <Content Include="SecondClient\bin\GamesharkToInjectConverter.js" />
+    <Content Include="SecondClient\bin\OotAPI.js" />
+    <Content Include="SecondClient\bin\OotBizHawk.js" />
+    <Content Include="SecondClient\bin\OotClient.js" />
+    <Content Include="SecondClient\bin\OotConfig.js" />
+    <Content Include="SecondClient\bin\OotEncoder.js" />
+    <Content Include="SecondClient\bin\OotFreespace.js" />
+    <Content Include="SecondClient\bin\OotLogger.js" />
+    <Content Include="SecondClient\bin\OotMasterServer.js" />
+    <Content Include="SecondClient\bin\OotPJ.js" />
+    <Content Include="SecondClient\bin\OotPluginLoader.js" />
+    <Content Include="SecondClient\bin\OotUDP.js" />
+    <Content Include="SecondClient\bin\OotVersion.js" />
+    <Content Include="SecondClient\bin\OotVersionChecker.js" />
+    <Content Include="SecondClient\plugins\OotOnline.js" />
+    <Content Include="SecondClient\plugins\SceneSync.js" />
+    <Content Include="SecondClient\src\app.js" />
+    <Content Include="SecondClient\src\fake_test_client.js" />
+    <Content Include="SecondClient\src\GamesharkToInjectConverter.js" />
+    <Content Include="SecondClient\src\OotAPI.js" />
+    <Content Include="SecondClient\src\OotBizHawk.js" />
+    <Content Include="SecondClient\src\OotClient.js" />
+    <Content Include="SecondClient\src\OotConfig.js" />
+    <Content Include="SecondClient\src\OotEncoder.js" />
+    <Content Include="SecondClient\src\OotFreespace.js" />
+    <Content Include="SecondClient\src\OotLogger.js" />
+    <Content Include="SecondClient\src\OotMasterServer.js" />
+    <Content Include="SecondClient\src\OotPJ.js" />
+    <Content Include="SecondClient\src\OotPluginLoader.js" />
+    <Content Include="SecondClient\src\OotUDP.js" />
+    <Content Include="SecondClient\src\OotVersion.js" />
+    <Content Include="SecondClient\src\OotVersionChecker.js" />
+    <Content Include="SecondClient\plugins\packets\link_loading.json" />
+    <Content Include="SecondClient\plugins\packets\link_packet.json" />
+    <Content Include="SecondClient\plugins\payloads\puppet.txt" />
+    <Content Include="SecondClient\plugins\payloads\spawn.txt" />
+    <Content Include="SecondClient\plugins\targets\targets.json" />
+    <Content Include="SecondClient\src\for_emulator\Lua\test\actor_data.json" />
+    <Content Include="SecondClient\src\for_emulator\Lua\test\puppet.json" />
+    <Content Include="SecondClient\src\for_emulator\Lua\test\pics\0x165-1.png" />
+    <Content Include="SecondClient\src\for_emulator\Lua\test\pics\0x176-195.png" />
+    <Content Include="SecondClient\src\for_emulator\Lua\test\pics\0x177-52.png" />
+    <Content Include="SecondClient\src\for_emulator\Lua\test\pics\0x1D6-37.png" />
+    <Content Include="SecondClient\src\for_emulator\Lua\test\pics\0x1D7-140.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="floating" />
+    <Folder Include="luasocket" />
+    <Folder Include="luasocket\lua" />
+    <Folder Include="luasocket\lua\socket" />
+    <Folder Include="luasocket\mime" />
+    <Folder Include="luasocket\socket" />
+    <Folder Include="overlay" />
+    <Folder Include="plugins" />
+    <Folder Include="plugins\modules\" />
+    <Folder Include="plugins\modules\actors\" />
+    <Folder Include="plugins\modules\templates\" />
+    <Folder Include="plugins\versions\" />
+    <Folder Include="plugins\packets" />
+    <Folder Include="plugins\targets" />
+    <Folder Include="plugins\versions\debug\" />
+    <Folder Include="plugins\versions\10\" />
+    <Folder Include="SecondClient" />
+    <Folder Include="SecondClient\bin" />
+    <Folder Include="SecondClient\bin\Lua" />
+    <Folder Include="SecondClient\Lua" />
+    <Folder Include="SecondClient\plugins" />
+    <Folder Include="SecondClient\plugins\packets" />
+    <Folder Include="SecondClient\plugins\payloads" />
+    <Folder Include="SecondClient\plugins\targets" />
+    <Folder Include="SecondClient\src" />
+    <Folder Include="SecondClient\src\for_emulator" />
+    <Folder Include="SecondClient\src\for_emulator\Lua" />
+    <Folder Include="SecondClient\src\for_emulator\Lua\dep" />
+    <Folder Include="SecondClient\src\for_emulator\Lua\test" />
+    <Folder Include="SecondClient\src\for_emulator\Lua\test\pics" />
+    <Folder Include="src" />
+    <Folder Include="src\for_emulator" />
+    <Folder Include="src\for_emulator\Lua" />
+    <Folder Include="src\for_emulator\Lua\dep" />
+    <Folder Include="src\for_emulator\Lua\test" />
+    <Folder Include="src\for_emulator\Lua\test\pics" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="plugins\aaaOotLoaderCore.js" />
+    <Compile Include="plugins\modules\templates\Pickupable_revised.opm">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="plugins\SaveSync.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\OotBits.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\OotCMD.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\OotColors.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="src\OotTimeEmulation.js">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

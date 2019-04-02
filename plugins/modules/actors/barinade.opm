@@ -1,0 +1,23 @@
+// Boss Barinade
+let Barinade = {
+    actor: "Barinade",
+    version_offsets: {
+        debug: 0x180,
+        10: 0x180
+    },
+    readHandler: "actor_behavior",
+    actorid: 0x00BA,
+    actorCategory: 9,
+    template: "Boss",
+	filter: {
+        offset: 0x1C,
+        data: 0xFF
+    },
+    exit: 0x010E,
+    cutscene: 0xFFF0,
+    conditional: function (packet) {
+        return packet.data.value === 0x4160;
+    }
+}
+
+module.exports = Barinade;

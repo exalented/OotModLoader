@@ -1,0 +1,18 @@
+﻿// Dodongo's head
+let Bg_Dodoago = {
+    actor: "Bg_Dodoago",
+    version_offsets: {
+        debug: 0x00B4,
+		10: 0x00B4
+    },
+    readHandler: "range",
+    writeHandler: "actorRange",
+    actorid: 0x003F,
+    actorCategory: 1,
+    template: "Conditional",
+    conditional: function (packet) {
+        return true;
+    }
+}
+
+module.exports = Bg_Dodoago;

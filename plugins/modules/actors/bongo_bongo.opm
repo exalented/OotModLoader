@@ -1,0 +1,23 @@
+// Bongo Bongo
+let Bongo_Bongo = {
+    actor: "Bongo_Bongo",
+    version_offsets: {
+        debug: 0xAF,
+        10: 0xAF
+    },
+    readHandler: "80",
+    actorid: 0x00E9,
+    actorCategory: 9,
+    template: "Boss",
+    filter: {
+        offset: 0x1C,
+        data: 0xFF
+    },
+    exit: 0x0580,
+    cutscene: 0x0000,
+    conditional: function (packet) {
+        return packet.data.value === 0x0 || packet.data.value >= 100;
+    }
+}
+
+module.exports = Bongo_Bongo;

@@ -1,0 +1,115 @@
+﻿class Pickupable {
+    constructor() {
+        this.id = this.constructor.name;
+    }
+
+    template(parent, api, emulator, data) {
+        if (data.hasOwnProperty("filter")) {
+            parent.api.computeActor(data.actor + "|" + data.offset, data.actorid, parent.api.actorCategories[data.actorCategory], data.offset, data.readHandler, data.size, data.filter);
+            parent.api.computeActor(data.actor + "|" + data.offset2, data.actorid, parent.api.actorCategories[data.actorCategory], data.offset2, data.readHandler2, data.size, data.filter);
+            parent.api.computeActor(data.actor + "|" + data.offset3, data.actorid, parent.api.actorCategories[data.actorCategory], data.offset3, data.readHandler3, data.size, data.filter);
+            parent.api.computeActor(data.actor + "|" + data.offset4, data.actorid, parent.api.actorCategories[data.actorCategory], data.offset4, data.readHandler4, data.size4, data.filter);
+        } else {
+            parent.api.computeActor(data.actor + "|" + data.offset, data.actorid, parent.api.actorCategories[data.actorCategory], data.offset, data.readHandler, data.size);
+            parent.api.computeActor(data.actor + "|" + data.offset2, data.actorid, parent.api.actorCategories[data.actorCategory], data.offset2, data.readHandler2, data.size);
+            parent.api.computeActor(data.actor + "|" + data.offset3, data.actorid, parent.api.actorCategories[data.actorCategory], data.offset3, data.readHandler3, data.size);
+            parent.api.computeActor(data.actor + "|" + data.offset4, data.actorid, parent.api.actorCategories[data.actorCategory], data.offset4, data.readHandler4, data.size4);
+        }
+
+        api.registerClientSidePacketHook(data.actor + "|" + data.offset, function (packet) {
+            if (parent._forbidSync) {
+                return false;
+            }
+            packet.addr = packet.data.hash;
+            packet.offset = 0x130;
+            packet.data = 0x00000000;
+            packet.writeHandler = "actor_word";
+            return true;
+        });
+
+        api.registerPacketTransformer(data.actor + "|" + data.offset, function (packet) {
+            if (parent._forbidSync) {
+                return false;
+            }
+            let copy = JSON.parse(JSON.stringify(packet));
+            copy["payload"]["offset"] = 0x134;
+            emulator.sendViaSocket(copy.payload);
+            return packet;
+        });
+
+        api.registerClientSidePacketHook(data.actor + "|" + data.offset2, function (packet) {
+            if (parent._forbidSync) {
+                return false;
+            }
+            packet.addr = packet.data.hash;
+            packet.offset = data.offset2;
+            packet.data = packet.data.value;
+            packet.writeHandler = data.writeHandler2;
+            return true;
+        });
+
+        api.registerPacketTransformer(data.actor + "|" + data.offset2, function (packet) {
+            if (parent._forbidSync) {
+                return false;
+            }
+            let copy = JSON.parse(JSON.stringify(packet));
+            copy["payload"]["offset"] = 0x08;
+            emulator.sendViaSocket(copy.payload);
+            return packet;
+        });
+
+        api.registerClientSidePacketHook(data.actor + "|" + data.offset3, function (packet) {
+            if (parent._forbidSync) {
+                return false;
+            }
+            packet.addr = packet.data.hash;
+            if (data.hasOwnProperty("write_offset3")) {
+                packet.offset = data.write_offset3;
+            } else {
+                packet.offset = data.offset3;
+            }
+            if (data.hasOwnProperty("value3")) {
+                packet.data = data.value3;
+            } else {
+                packet.data = packet.data.value;
+            }
+            packet.writeHandler = data.writeHandler3;
+            return true;
+        });
+
+        api.registerPacketTransformer(data.actor + "|" + data.offset3, function (packet) {
+            if (parent._forbidSync) {
+                return false;
+            }
+            return packet;
+        });
+
+        api.registerClientSidePacketHook(data.actor + "|" + data.offset4, function (packet) {
+            if (parent._forbidSync) {
+                return false;
+            }
+            packet.addr = packet.data.hash;
+            if (data.hasOwnProperty("write_offset4")) {
+                packet.offset = data.write_offset4;
+            } else {
+                packet.offset = data.offset4;
+            }
+            if (data.hasOwnProperty("value4")) {
+                packet.data = data.value4;
+            } else {
+                packet.data = packet.data.value;
+            }
+            packet.writeHandler = data.writeHandler4;
+            return true;
+        });
+
+        api.registerPacketTransformer(data.actor + "|" + data.offset4, function (packet) {
+            if (parent._forbidSync) {
+                return false;
+            }
+            return packet;
+        });
+    }
+}
+
+module.exports = new Pickupable();

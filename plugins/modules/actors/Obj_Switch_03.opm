@@ -1,0 +1,18 @@
+﻿// Switch - Eye variant.
+let Obj_Switch = {
+    actor: "Obj_Switch",
+    version_offsets: {
+        debug: 0x171,
+		10: 0x161
+    },
+    readHandler: "80",
+    writeHandler: "actor_80",
+    actorid: 0x012A,
+    actorCategory: 0,
+    template: "Conditional",
+    conditional: function (packet) {
+        return true;
+    }
+}
+
+module.exports = Obj_Switch;

@@ -1,0 +1,15 @@
+﻿// Pots
+let Obj_Tsubo = {
+    actor: "Obj_Tsubo",
+    version_offsets: {
+        debug: 0x118,
+        10: 0x118
+    },
+    readHandler: "fourBytes",
+    writeHandler: "actor_word_copy",
+    actorid: 0x014E,
+    actorCategory: 6,
+    template: "Pickupable_revised"
+}
+
+module.exports = Obj_Tsubo;

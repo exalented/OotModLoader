@@ -1,0 +1,19 @@
+﻿// Song of Time block
+let Obj_Timeblock = {
+    actor: "Obj_Timeblock",
+    version_offsets: {
+        debug: 0x174,
+        10: 0x164
+    },
+    readHandler: "range",
+    writeHandler: "actorRange",
+    size: 0x1,
+    actorid: 0x1D1,
+    actorCategory: 7,
+    template: "Conditional",
+    conditional: function (packet) {
+        return true;
+    }
+}
+
+module.exports = Obj_Timeblock;

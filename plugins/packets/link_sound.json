@@ -1,0 +1,12 @@
+﻿{
+  "packet_id": "link_sound",
+  "readHandler": "bundle",
+  "bundles": [
+    {
+      "key": "sfx",
+      "addr": "@OotOnline_Context@",
+      "offset": "0x88",
+      "readHandler": "81"
+    }
+  ]
+}

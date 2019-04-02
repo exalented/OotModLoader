@@ -1,0 +1,18 @@
+﻿// Falling platform in Deku Tree slingshot room.
+let Obj_Lift = {
+    actor: "Obj_Lift",
+    version_offsets: {
+        debug: 0x160,
+		10: 0x150
+    },
+    readHandler: "80",
+    writeHandler: "actor_80",
+    actorid: 0x012C,
+    actorCategory: 1,
+    template: "Conditional",
+    conditional: function (packet) {
+        return packet.data.value > 0;
+    }
+}
+
+module.exports = Obj_Lift;

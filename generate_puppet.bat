@@ -1,0 +1,1 @@
+OotOnlinePayloadConverter.exe -noovl=src/asm/En_Link_Puppet_N0.nonovl -output=plugins/payloads_10/puppet.payload -base=0x608000

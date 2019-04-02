@@ -1,0 +1,83 @@
+class Boss {
+    constructor() {
+        this.id = this.constructor.name;
+    }
+
+    template(parent, api, emulator, data) {
+        if (data.hasOwnProperty("overrideActorID")){
+            data.actorid = data.overrideActorID;
+        }
+        if (data.hasOwnProperty("filter")) {
+            parent.api.computeActor(data.actor + "|" + data.offset, data.actorid, parent.api.actorCategories[data.actorCategory], data.offset, data.readHandler, data.size, data.filter);
+        } else {
+            parent.api.computeActor(data.actor + "|" + data.offset, data.actorid, parent.api.actorCategories[data.actorCategory], data.offset, data.readHandler, data.size);
+        }
+
+        api.registerClientSidePacketHook(data.actor + "|" + data.offset, function (packet) {
+            if (parent._forbidSync) {
+                if (data.hasOwnProperty("overrideSafety")){
+                }else{
+                    return false;
+                }
+            }
+            console.log(packet);
+            if (!data.conditional(packet)) {
+                return false;
+            }
+            packet.addr = packet.data.hash;
+            if (data.hasOwnProperty("write_offset")) {
+                packet.offset = data.write_offset;
+            } else {
+                packet.offset = data.offset;
+            }
+            if (data.hasOwnProperty("value")) {
+                packet.data = data.value;
+            } else {
+                packet.data = packet.data.value;
+            }
+            packet.writeHandler = "Null";
+            return true;
+        });
+
+        api.registerPacketTransformer(data.actor + "|" + data.offset, function (packet) {
+            if (parent._forbidSync) {
+                if (data.hasOwnProperty("overrideSafety")){
+                }else{
+                    return false;
+                }
+            }
+            let bundle = {
+                packet_id: "gohma_die_dammit",
+                writeHandler: "bundle",
+                data: [
+                    {
+                        packet_id: "gohma_stuff",
+                        writeHandler: "81",
+                        data: data.exit,
+                        addr: 0x600108,
+                        offset: 0x4
+                    },
+                    {
+                        packet_id: "gohma_stuff",
+                        writeHandler: "81",
+                        data: data.cutscene,
+                        addr: 0x600108,
+                        offset: 0x6
+                    },
+                    {
+                        packet_id: "gohma_stuff",
+                        writeHandler: "fourBytes",
+                        data: 0x00000005,
+                        addr: 0x600108,
+                        offset: 0x0
+                    },
+                ]
+            };
+            console.log(JSON.stringify(bundle, null, 2));
+            emulator.sendViaSocket(bundle);
+            return null;
+        });
+    }
+}
+
+module.exports = new Boss();

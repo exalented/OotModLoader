@@ -1,0 +1,16 @@
+﻿// Forest temple miniboss room platform
+let Bg_Mori_Bigst = {
+    actor: "Bg_Mori_Bigst",
+    version_offsets: {
+        debug: 0x24,
+        10: 0x24
+    },
+    readHandler: "range",
+    writeHandler: "actorRange",
+    size: 0xC,
+    actorid: 0x0086,
+    actorCategory: 1,
+    template: "Pushable"
+}
+
+module.exports = Bg_Mori_Bigst;

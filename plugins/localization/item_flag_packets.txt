@@ -1,0 +1,9 @@
+item_flag_0
+item_flag_1
+item_flag_2
+item_flag_3
+item_flag_4
+item_flag_5
+item_flag_6
+item_flag_7
+item_flag_8

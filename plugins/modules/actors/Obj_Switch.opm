@@ -1,0 +1,19 @@
+﻿// Switch.
+let Obj_Switch = {
+    actor: "Obj_Switch",
+    version_offsets: {
+        debug: 0x54,
+		10: 0x54
+    },
+    readHandler: "range",
+    writeHandler: "actorRange",
+    actorid: 0x012A,
+	size: 0x04,
+    actorCategory: 0,
+    template: "Conditional",
+    conditional: function (packet) {
+        return true;
+    }
+}
+
+module.exports = Obj_Switch;
